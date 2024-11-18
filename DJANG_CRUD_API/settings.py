@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'rest_framework',  
+    'rest_framework',
+    'psycopg2',  
     'coreapi',
-    'ecomerce',  
+    'ecomerce',
+
 ]
 
 
@@ -81,8 +83,12 @@ WSGI_APPLICATION = 'DJANG_CRUD_API.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres', # [YOUR - DBNAME]
+        'USER' : 'postgres.nzchfvlqjjkhjmunkuia', # [YOUR - USER]
+        'PASSWORD' : '4r7pOvrA6YITmSFq', # [YOUR - PASSWORD] en el caso de supabase, password del proyecto
+        'HOST' : 'aws-0-us-west-1.pooler.supabase.com', # [YOUR - HOST]
+        'PORT' : '5432' # [YOUR - PORT]
     }
 }
 
@@ -130,7 +136,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #autorizacion al frontend
-CORS_ALLOWED_ORIGINS = []
+CORS_ALLOWED_ORIGINS = [
+    #"http://localhost:3000"
+    ]
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
